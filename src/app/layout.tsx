@@ -43,6 +43,7 @@ export const metadata: Metadata = {
 				alt: "Bangkok Area Development Potential - Oasis-H Platform",
 			},
 		],
+		url: "/",
 	},
 	twitter: {
 		card: "summary_large_image",
@@ -51,20 +52,14 @@ export const metadata: Metadata = {
 			"Interactive 3D mapping platform for Bangkok's urban development areas powered by Oasis-H.",
 		images: ["/og-image.png"],
 	},
-	icons: [
-		{ rel: "icon", url: "/favicon-16.svg", type: "image/svg+xml" },
-		{
-			rel: "icon",
-			url: "/tree-icon.svg",
-			type: "image/svg+xml",
-			sizes: "32x32",
-		},
-		{
-			rel: "apple-touch-icon",
-			url: "/apple-touch-icon.svg",
-			type: "image/svg+xml",
-		},
-	],
+	icons: {
+		icon: [
+			{ url: "/favicon-filled.svg", type: "image/svg+xml" },
+			{ url: "/tree-icon.svg", sizes: "32x32", type: "image/svg+xml" },
+		],
+		apple: { url: "/apple-touch-icon.svg", type: "image/svg+xml" },
+		shortcut: { url: "/favicon-filled.svg", type: "image/svg+xml" },
+	},
 };
 
 export const viewport: Viewport = {
