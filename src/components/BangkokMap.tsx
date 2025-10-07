@@ -140,6 +140,52 @@ export default function BangkokMap({
 										setHoveredLocation(null)
 									}
 								>
+									{/* Heatmap circles - multiple concentric circles */}
+									<div className="absolute inset-0">
+										{/* Outermost heatmap circle */}
+										<div
+											className="absolute rounded-full animate-pulse"
+											style={{
+												width: "60px",
+												height: "60px",
+												backgroundColor: getLocationColor(location.id),
+												opacity: 0.1,
+												top: "50%",
+												left: "50%",
+												transform: "translate(-50%, -50%)",
+												animation: "pulse 3s ease-in-out infinite",
+											}}
+										/>
+										{/* Middle heatmap circle */}
+										<div
+											className="absolute rounded-full animate-pulse"
+											style={{
+												width: "40px",
+												height: "40px",
+												backgroundColor: getLocationColor(location.id),
+												opacity: 0.15,
+												top: "50%",
+												left: "50%",
+												transform: "translate(-50%, -50%)",
+												animation: "pulse 2s ease-in-out infinite 0.5s",
+											}}
+										/>
+										{/* Inner heatmap circle */}
+										<div
+											className="absolute rounded-full animate-pulse"
+											style={{
+												width: "28px",
+												height: "28px",
+												backgroundColor: getLocationColor(location.id),
+												opacity: 0.2,
+												top: "50%",
+												left: "50%",
+												transform: "translate(-50%, -50%)",
+												animation: "pulse 1.5s ease-in-out infinite 1s",
+											}}
+										/>
+									</div>
+
 									{/* Outer ring for selected state */}
 									{selectedLocation === location.id && (
 										<div
