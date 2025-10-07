@@ -23,7 +23,7 @@ const locations: Location[] = [
 	{
 		id: "A2",
 		name: "พื้นที่เขตปทุมวัน",
-		x: 37.5, // Central Bangkok
+		x: 34.5, // Central Bangkok
 		y: 47,
 		coordinates: [100.534402, 13.738529], // Pathum Wan (District 7)
 		description: "พื้นที่ศักยภาพสูง \n เขตปทุมวัน (District 7)",
@@ -31,7 +31,7 @@ const locations: Location[] = [
 	{
 		id: "B1",
 		name: "พื้นที่เขตคลองเตย",
-		x: 42.5, // Eastern Central Bangkok
+		x: 41, // Eastern Central Bangkok
 		y: 52,
 		coordinates: [100.559301, 13.720125], // Khlong Toei (District 33)
 		description: "พื้นที่ศักยภาพปานกลาง \n เขตคลองเตย (District 33)",
@@ -39,7 +39,7 @@ const locations: Location[] = [
 	{
 		id: "B2",
 		name: "พื้นที่เขตบางขุนเทียน",
-		x: 23.5, // Western Bangkok
+		x: 16, // Western Bangkok
 		y: 74,
 		coordinates: [100.449055, 13.695512], // Bang Khun Thian (District 21)
 		description: "พื้นที่ศักยภาพปานกลาง \n เขตบางขุนเทียน (District 21)",
@@ -47,7 +47,7 @@ const locations: Location[] = [
 	{
 		id: "B3",
 		name: "พื้นที่เขตลาดกระบัง",
-		x: 70, // Eastern Bangkok
+		x: 75, // Eastern Bangkok
 		y: 45,
 		coordinates: [100.7493, 13.723062], // Lat Krabang (District 11)
 		description: "พื้นที่ศักยภาพปานกลาง \n เขตลาดกระบัง (District 11)",
@@ -81,7 +81,7 @@ export default function BangkokMap({
 	className = "",
 }: BangkokMapProps) {
 	const [selectedLocation, setSelectedLocation] = useState<string | null>(
-		null
+		"B1"
 	);
 	const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
 
@@ -107,18 +107,17 @@ export default function BangkokMap({
 			{/* Map Container */}
 			<div className="relative">
 				{/* Bangkok SVG Map */}
-				<div className="relative w-full max-w-4xl mx-auto overflow-hidden">
-					<div 
-						className="relative w-full"
+				<div className="relative w-full max-w-4xl mx-auto">
+					<div
+						className="relative w-full rounded-lg overflow-hidden"
 						style={{
 							aspectRatio: "871 / 692", // SVG viewBox ratio
-							maxHeight: "400px"
 						}}
 					>
 						<img
 							src="/Blank_Bangkok_Map.svg"
 							alt="Bangkok Map"
-							className="w-full h-full object-contain filter brightness-75 contrast-125"
+							className="w-full h-full object-fill filter brightness-75 contrast-125"
 						/>
 
 						{/* Location Markers - Positioned relative to the image */}
@@ -131,67 +130,73 @@ export default function BangkokMap({
 										left: `${location.x}%`,
 										top: `${location.y}%`,
 									}}
-									onClick={() => handleLocationClick(location)}
+									onClick={() =>
+										handleLocationClick(location)
+									}
 									onMouseEnter={() =>
 										setHoveredLocation(location.id)
-								}
-								onMouseLeave={() => setHoveredLocation(null)}
-							>
-								{/* Outer ring for selected state */}
-								{selectedLocation === location.id && (
+									}
+									onMouseLeave={() =>
+										setHoveredLocation(null)
+									}
+								>
+									{/* Outer ring for selected state */}
+									{selectedLocation === location.id && (
+										<div
+											className="absolute rounded-full animate-pulse"
+											style={{
+												width: "28px",
+												height: "28px",
+												backgroundColor:
+													getLocationColor(
+														location.id
+													),
+												opacity: 0.3,
+												top: "50%",
+												left: "50%",
+												transform:
+													"translate(-50%, -50%)",
+											}}
+										/>
+									)}
+
+									{/* Main marker */}
 									<div
-										className="absolute rounded-full animate-pulse"
+										className={`w-5 h-5 rounded-full border-2 border-white shadow-lg transition-all duration-200 flex items-center justify-center ${
+											hoveredLocation === location.id
+												? "scale-125"
+												: "scale-100"
+										}`}
 										style={{
-											width: "28px",
-											height: "28px",
 											backgroundColor: getLocationColor(
 												location.id
 											),
-											opacity: 0.3,
-											top: "50%",
-											left: "50%",
-											transform: "translate(-50%, -50%)",
 										}}
-									/>
-								)}
-
-								{/* Main marker */}
-								<div
-									className={`w-5 h-5 rounded-full border-2 border-white shadow-lg transition-all duration-200 flex items-center justify-center ${
-										hoveredLocation === location.id
-											? "scale-125"
-											: "scale-100"
-									}`}
-									style={{
-										backgroundColor: getLocationColor(
-											location.id
-										),
-									}}
-								>
-									<span className="text-[#042918] text-[10px] font-bold">
-										{location.id}
-									</span>
-								</div>
-
-								{/* Tooltip */}
-								{hoveredLocation === location.id && (
-									<div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-[#042918]/90 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap border border-white/20">
-										<div className="font-medium">
-											{location.name}
-										</div>
-										<div className="text-white/70 text-xs">
-											{location.description}
-										</div>
-										<div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-[#042918]/90"></div>
+									>
+										<span className="text-[#042918] text-[10px] font-bold">
+											{location.id}
+										</span>
 									</div>
-								)}
-							</div>
-						))}
+
+									{/* Tooltip */}
+									{hoveredLocation === location.id && (
+										<div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-[#042918]/90 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap border border-white/20">
+											<div className="font-medium">
+												{location.name}
+											</div>
+											<div className="text-white/70 text-xs">
+												{location.description}
+											</div>
+											<div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-[#042918]/90"></div>
+										</div>
+									)}
+								</div>
+							))}
+						</div>
 					</div>
 				</div>
-			</div>
 
-			{/* Legend */}
+				{/* Legend */}
 				<div className="mt-6 bg-[#042918]/60 backdrop-blur-sm border border-white/20 rounded-lg p-4">
 					<h4 className="text-white font-medium mb-3">
 						ระดับศักยภาพพื้นที่

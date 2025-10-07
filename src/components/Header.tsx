@@ -18,13 +18,13 @@ export default function Header() {
 					<nav className="hidden md:flex items-center space-x-8">
 						<div className="flex items-center space-x-8 text-sm text-white/80 uppercase tracking-wider">
 							<button className="hover:text-[#A3E047] transition-colors">
-								Renewable Energy
+								{"ข้อมูลพื้นที่"}
 							</button>
 							<button className="hover:text-[#A3E047] transition-colors">
-								Pollution Reduction
+								{"ข้อมูล Index"}
 							</button>
 							<button className="hover:text-[#A3E047] transition-colors">
-								Green Environment
+								{"เกี่ยวกับเรา"}
 							</button>
 						</div>
 					</nav>
@@ -35,11 +35,6 @@ export default function Header() {
 						<button className="p-2 text-white/80 hover:text-white transition-colors">
 							<Search size={20} />
 						</button>
-
-						{/* Contact Info */}
-						<div className="hidden lg:block text-xs text-white/60 uppercase tracking-wider">
-							{"เกี่ยวกับเรา"}
-						</div>
 
 						{/* Request Button */}
 						<button className="bg-white text-[#042918] px-6 py-2 rounded-full text-sm font-medium hover:bg-[#A3E047] transition-colors">

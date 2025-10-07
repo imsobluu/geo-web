@@ -78,7 +78,7 @@ export default function Home() {
 				{/* Maps Container */}
 				<div className="flex-1 flex lg:flex-row flex-col gap-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 min-h-0">
 					{/* Map Section */}
-					<section className="flex-1 flex flex-col min-h-0">
+					<section className="flex-1 flex flex-col min-h-[500px] lg:min-h-0">
 						{/* Section heading */}
 						<div className="flex-shrink-0 mb-6">
 							<h2 className="text-2xl lg:text-3xl font-light text-white mb-2">
@@ -91,7 +91,7 @@ export default function Home() {
 						</div>
 
 						{/* Map Integration - Flex container for map */}
-						<div className="flex-1 flex flex-col relative min-h-0">
+						<div className="flex-1 flex flex-col relative min-h-[400px]">
 							{/* Selected Location Details */}
 							{selectedLocation && (
 								<div className="absolute bottom-10 left-[11px] z-30 bg-white/80 border-2 border-t-0 border-black p-2 max-w-xs">
@@ -110,7 +110,7 @@ export default function Home() {
 							)}
 
 							{/* Map component container - takes remaining space */}
-							<div className="flex-1 rounded-2xl overflow-hidden border text-black border-white/10 bg-black/20 backdrop-blur-sm">
+							<div className="flex-1 rounded-2xl overflow-hidden border text-black border-white/10 bg-black/20 backdrop-blur-sm min-h-[400px] h-[400px] lg:h-full">
 								<SphereMap
 									ref={sphereMapRef}
 									className="w-full h-full"
@@ -121,7 +121,7 @@ export default function Home() {
 					</section>
 
 					{/* Bangkok Map Section */}
-					<section className="flex-1 flex flex-col min-h-0">
+					<section className="flex-1 flex flex-col min-h-[500px] lg:min-h-0">
 						<div className="flex-1 flex flex-col">
 							<BangkokMap
 								onLocationClick={handleLocationClick}
@@ -134,6 +134,7 @@ export default function Home() {
 
 			{/* Background decoration - kept as absolute positioned */}
 			<div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+				{/* Original gradient circles */}
 				{/* Top right aerial view */}
 				<div className="absolute top-0 right-0 w-96 h-96 opacity-20">
 					<div className="w-full h-full bg-gradient-to-bl from-green-400/30 to-transparent rounded-full blur-3xl"></div>
@@ -143,6 +144,11 @@ export default function Home() {
 				<div className="absolute bottom-0 left-0 w-80 h-80 opacity-20">
 					<div className="w-full h-full bg-gradient-to-tr from-green-300/30 to-transparent rounded-full blur-3xl"></div>
 				</div>
+
+				{/* Border circles from HeroSection */}
+				<div className="absolute top-20 left-0 w-96 h-96 border border-white/10 rounded-full transform -translate-x-48 -translate-y-48"></div>
+				<div className="absolute bottom-20 right-0 w-80 h-80 border border-white/10 rounded-full transform translate-x-40 translate-y-40"></div>
+				<div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] border border-white/5 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
 			</div>
 		</div>
 	);

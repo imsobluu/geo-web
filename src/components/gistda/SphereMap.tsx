@@ -56,22 +56,12 @@ const SphereMap = forwardRef<SphereMapRef, SphereMapProps>(
 
 				map.Event.bind((window as any).sphere.EventName.Ready, () => {
 					const onTilesetLoad = (t: any) => {
-						// First navigate to the tileset center
+						// Start directly at B1 (Khlong Toei) coordinates
 						map.goTo({
-							center: t.cartographicCenter,
-							zoom: t.zoom + 3,
+							center: [100.559301, 13.720125], // B1 coordinates
+							zoom: 16,
 							pitch: 60,
 						});
-
-						// Then navigate to B1 (Khlong Toei) as default location after a delay
-						setTimeout(() => {
-							map.goTo({
-								center: [100.559301, 13.720125], // B1 coordinates
-								zoom: 16,
-								pitch: 60,
-								duration: 2000,
-							});
-						}, 1500); // 1.5 second delay to let tileset load first
 					};
 
 					myLayer = new (window as any).sphere.Layer("3dt", {
