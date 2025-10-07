@@ -1,10 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
+/* Custom CSS Variables for Xspace Green Theme */
+:root {
+	/* Primary Green Colors - from design */
+	--color-green-dark: #042918;    /* Main dark green background */
+	--color-green-bright: #A3E047;  /* Bright green accent/lemon */
+	--color-green-mid: #2D5A3D;     /* Mid-tone green */
+	
+	/* Background and Surface Colors */
+	--color-bg-primary: var(--color-green-dark);
+	--color-bg-card: rgba(255, 255, 255, 0.05);
+	--color-bg-overlay: rgba(4, 41, 24, 0.8);
+	
+	/* Text Colors */
+	--color-text-primary: #ffffff;
+	--color-text-secondary: rgba(255, 255, 255, 0.7);
+	--color-text-accent: var(--color-green-bright);
+	
+	/* Border and Line Colors */
+	--color-border: rgba(255, 255, 255, 0.1);
+	--color-border-accent: var(--color-green-bright);
+}
+
+/* Apply Proxima Nova and Noto Sans Thai font family */
+body {
+	font-family: 'Proxima Nova', 'Noto Sans Thai', var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+	background-color: var(--color-bg-primary);
+	color: var(--color-text-primary);
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+}
+
 @theme {
-	--font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+	--font-sans: 'Noto Sans Thai', var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
 		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -116,10 +149,10 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+	* {
+		@apply border-border outline-ring/50;
 	}
-  body {
-    @apply bg-background text-foreground;
+	body {
+		@apply bg-background text-foreground;
 	}
 }
