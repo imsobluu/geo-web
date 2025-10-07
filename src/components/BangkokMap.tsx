@@ -107,27 +107,33 @@ export default function BangkokMap({
 			{/* Map Container */}
 			<div className="relative">
 				{/* Bangkok SVG Map */}
-				<div className="relative w-full max-w-4xl mx-auto">
-					<img
-						src="/Blank_Bangkok_Map.svg"
-						alt="Bangkok Map"
-						className="w-full h-auto filter brightness-75 contrast-125"
-						style={{ maxHeight: "400px" }}
-					/>
+				<div className="relative w-full max-w-4xl mx-auto overflow-hidden">
+					<div 
+						className="relative w-full"
+						style={{
+							aspectRatio: "871 / 692", // SVG viewBox ratio
+							maxHeight: "400px"
+						}}
+					>
+						<img
+							src="/Blank_Bangkok_Map.svg"
+							alt="Bangkok Map"
+							className="w-full h-full object-contain filter brightness-75 contrast-125"
+						/>
 
-					{/* Location Markers */}
-					<div className="absolute inset-0">
-						{locations.map((location) => (
-							<div
-								key={location.id}
-								className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-								style={{
-									left: `${location.x}%`,
-									top: `${location.y}%`,
-								}}
-								onClick={() => handleLocationClick(location)}
-								onMouseEnter={() =>
-									setHoveredLocation(location.id)
+						{/* Location Markers - Positioned relative to the image */}
+						<div className="absolute inset-0">
+							{locations.map((location) => (
+								<div
+									key={location.id}
+									className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+									style={{
+										left: `${location.x}%`,
+										top: `${location.y}%`,
+									}}
+									onClick={() => handleLocationClick(location)}
+									onMouseEnter={() =>
+										setHoveredLocation(location.id)
 								}
 								onMouseLeave={() => setHoveredLocation(null)}
 							>
@@ -183,8 +189,9 @@ export default function BangkokMap({
 						))}
 					</div>
 				</div>
+			</div>
 
-				{/* Legend */}
+			{/* Legend */}
 				<div className="mt-6 bg-[#042918]/60 backdrop-blur-sm border border-white/20 rounded-lg p-4">
 					<h4 className="text-white font-medium mb-3">
 						ระดับศักยภาพพื้นที่

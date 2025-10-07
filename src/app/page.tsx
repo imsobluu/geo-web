@@ -16,7 +16,12 @@ export default function Home() {
 		coordinates: [number, number];
 		name: string;
 		description: string;
-	} | null>(null);
+	} | null>({
+		id: "B1",
+		name: "พื้นที่เขตคลองเตย",
+		coordinates: [100.559301, 13.720125],
+		description: "พื้นที่ศักยภาพปานกลาง \n เขตคลองเตย (District 33)",
+	});
 
 	const handleLocationClick = (location: {
 		id: string;
@@ -89,15 +94,15 @@ export default function Home() {
 						<div className="flex-1 flex flex-col relative min-h-0">
 							{/* Selected Location Details */}
 							{selectedLocation && (
-								<div className="absolute bottom-2 left-2 z-30 bg-black/25 border border-[#A3E047]/30 rounded-lg p-4 max-w-xs backdrop-blur-sm">
-									<h4 className="text-black font-medium mb-2">
+								<div className="absolute bottom-10 left-[11px] z-30 bg-white/80 border-2 border-t-0 border-black p-2 max-w-xs">
+									<h4 className="text-black font-medium text-[12px]">
 										{selectedLocation.name} -{" "}
 										{selectedLocation.id}
 									</h4>
-									<p className="text-black/80 text-sm mb-3 whitespace-pre-line">
+									<p className="text-black/80 text-[10px] whitespace-pre-line">
 										{selectedLocation.description}
 									</p>
-									<div className="text-black/60 text-xs">
+									<div className="text-black/60 text-[8px]">
 										พิกัด: {selectedLocation.coordinates[1]}
 										, {selectedLocation.coordinates[0]}
 									</div>
