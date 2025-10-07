@@ -26,6 +26,7 @@ server: {
 ```js
 client: {
   NEXT_PUBLIC_APP_URL: z.string().url(),
+  NEXT_PUBLIC_GISTDA_API_KEY: z.string(),
 }
 ```
 
@@ -34,6 +35,7 @@ client: {
 runtimeEnv: {
   NODE_ENV: process.env.NODE_ENV,
   NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+  NEXT_PUBLIC_GISTDA_API_KEY: process.env.NEXT_PUBLIC_GISTDA_API_KEY,
 }
 ```
 
@@ -46,6 +48,7 @@ import { env } from "~/env";
 // Type-safe access
 const isDev = env.NODE_ENV === "development";
 const apiUrl = env.NEXT_PUBLIC_APP_URL;
+const gistdaApiKey = env.NEXT_PUBLIC_GISTDA_API_KEY;
 ```
 
 **Validation benefits**:
@@ -129,6 +132,13 @@ const apiUrl = env.NEXT_PUBLIC_APP_URL;
 2. Update `runtimeEnv` mapping
 3. Add to `.env.example` file
 4. Type will be automatically inferred
+
+**GISTDA API Key Setup**:
+1. Get API key from https://sphere.gistda.or.th/
+2. For testing, use "test2022"
+3. Add to `.env`: `NEXT_PUBLIC_GISTDA_API_KEY="your-key"`
+4. Import in components: `import { env } from "~/env"`
+5. Use: `env.NEXT_PUBLIC_GISTDA_API_KEY`
 
 **Adding new shadcn component**:
 ```bash
